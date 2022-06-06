@@ -1,3 +1,5 @@
 # Kafka Consumer Example Code
 
-- `KafkaBookConsumer`  
+- `KafkaBookConsumer`
+- `KafkaBookConsumerManualCommit`
+- `KafkaBookConsumerPartition`
