@@ -6,4 +6,5 @@ public abstract class ConsumerGroupValue {
     public static final String HYO_PARTITION = "hyo-partition";
     public static final String HYO_STREAMS = "hyo-streams";
     public static final String HYO_STREAMS_LINE_SPLIT = "hyo-streams-line-split";
+    public static final String HYO_STREAMS_WORD_COUNT = "hyo-streams-word-count";
 }
