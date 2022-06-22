@@ -11,4 +11,9 @@ public abstract class ConsumerConfigValue {
     public static final String AUTO_OFFSET_RESET_EARLIEST = "earliest";
     public static final String AUTO_OFFSET_RESET_LATEST = "latest";
     public static final String AUTO_OFFSET_RESET_NONE = "none";
+    public static final int SESSION_TIMEOUT = 30_000;
+    public static final int HEARTBEAT_INTERVAL = 10_000;
+    public static final int MAX_POLL_INTERVAL = 600_000;
+    public static final int MAX_POLL_RECORDS = 250;
+    public static final boolean ALLOW_AUTO_CREATE_TOPICS = false;
 }
