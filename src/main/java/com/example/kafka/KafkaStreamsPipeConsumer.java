@@ -38,14 +38,7 @@ public class KafkaStreamsPipeConsumer {
             consumer.subscribe(List.of(KafkaTopic.STREAMS_PIPE_OUTPUT));
 
             while (true) {
-                ConsumerRecords<String, String> records;
-
-                try {
-                    records = consumer.poll(Duration.ofMillis(100));
-                } catch (Exception e) {
-                    logger.error("exception", e);
-                    return;
-                }
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
 
                 logger.info("records count: {}", records.count());
 
