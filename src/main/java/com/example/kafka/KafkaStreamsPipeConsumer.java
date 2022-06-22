@@ -1,6 +1,5 @@
 package com.example.kafka;
 
-import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -39,7 +38,14 @@ public class KafkaStreamsPipeConsumer {
             consumer.subscribe(List.of(KafkaTopic.STREAMS_PIPE_OUTPUT));
 
             while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+                ConsumerRecords<String, String> records;
+
+                try {
+                    records = consumer.poll(Duration.ofMillis(100));
+                } catch (Exception e) {
+                    logger.error("exception", e);
+                    return;
+                }
 
                 logger.info("records count: {}", records.count());
 
