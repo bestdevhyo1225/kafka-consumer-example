@@ -23,7 +23,7 @@ public class KafkaStreamsPipeConsumer {
         props.put(ConsumerConfig.ALLOW_AUTO_CREATE_TOPICS_CONFIG, ConsumerConfigValue.ALLOW_AUTO_CREATE_TOPICS);
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, ConsumerConfigValue.BOOTSTRAP_SERVERS);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGroupValue.HYO_STREAMS);
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, ConsumerConfigValue.ENABLE_AUTO_COMMIT_FALSE);
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, ConsumerConfigValue.ENABLE_AUTO_COMMIT_TRUE);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, ConsumerConfigValue.AUTO_OFFSET_RESET_LATEST);
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, ConsumerConfigValue.SESSION_TIMEOUT);
         props.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, ConsumerConfigValue.HEARTBEAT_INTERVAL);
@@ -49,13 +49,6 @@ public class KafkaStreamsPipeConsumer {
                         "Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}",
                         record.topic(), record.partition(), record.offset(), record.key(), record.value()
                     );
-                }
-
-                try {
-                    // insertIntoDB(data);
-                    consumer.commitSync();
-                } catch (CommitFailedException exception) {
-                    logger.error("exception", exception);
                 }
             }
         }
