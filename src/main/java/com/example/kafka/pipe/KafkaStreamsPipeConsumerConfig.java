@@ -2,12 +2,12 @@ package com.example.kafka.pipe;
 
 import com.example.kafka.ConsumerConfigValue;
 import com.example.kafka.ConsumerGroupValue;
+import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-import java.util.Properties;
-
 public class KafkaStreamsPipeConsumerConfig {
+
     public static Properties getProperties() {
         Properties props = new Properties();
 
