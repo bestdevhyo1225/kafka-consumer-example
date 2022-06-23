@@ -1,5 +1,8 @@
-package com.example.kafka;
+package com.example.kafka.pipe;
 
+import com.example.kafka.ConsumerConfigValue;
+import com.example.kafka.ConsumerGroupValue;
+import com.example.kafka.KafkaTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
