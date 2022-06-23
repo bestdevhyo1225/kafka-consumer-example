@@ -6,7 +6,7 @@ import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-public class KafkaStreamsPipeConsumerConfig {
+final class KafkaStreamsPipeConsumerConfig {
 
     public static Properties getProperties() {
         Properties props = new Properties();
