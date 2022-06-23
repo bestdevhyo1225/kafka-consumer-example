@@ -20,23 +20,8 @@ public class KafkaStreamsPipeConsumer3 {
     private static final Logger logger = LoggerFactory.getLogger(KafkaStreamsPipeConsumer3.class);
 
     public static void main(String[] args) {
-        Properties props = new Properties();
-
-        props.put(ConsumerConfig.ALLOW_AUTO_CREATE_TOPICS_CONFIG, ConsumerConfigValue.ALLOW_AUTO_CREATE_TOPICS);
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, ConsumerConfigValue.BOOTSTRAP_SERVERS);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, ConsumerGroupValue.HYO_STREAMS);
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, ConsumerConfigValue.ENABLE_AUTO_COMMIT_TRUE);
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, ConsumerConfigValue.AUTO_OFFSET_RESET_LATEST);
-        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, ConsumerConfigValue.SESSION_TIMEOUT);
-        props.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, ConsumerConfigValue.HEARTBEAT_INTERVAL);
-        props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, ConsumerConfigValue.MAX_POLL_INTERVAL);
-        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, ConsumerConfigValue.MAX_POLL_RECORDS);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-
         // 새로운 컨슈머를 생성한다.
-        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(KafkaStreamsPipeConsumerConfig.getProperties());
         try (consumer) {
             consumer.subscribe(List.of(KafkaTopic.STREAMS_PIPE_OUTPUT));
 
