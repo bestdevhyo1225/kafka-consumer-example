@@ -1,19 +1,13 @@
 package com.example.kafka.pipe;
 
-import com.example.kafka.ConsumerConfigValue;
-import com.example.kafka.ConsumerGroupValue;
 import com.example.kafka.KafkaTopic;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
+import java.time.Duration;
+import java.util.List;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.Duration;
-import java.util.List;
-import java.util.Properties;
 
 public class KafkaStreamsPipeConsumer3 {
 
@@ -22,6 +16,7 @@ public class KafkaStreamsPipeConsumer3 {
     public static void main(String[] args) {
         // 새로운 컨슈머를 생성한다.
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(KafkaStreamsPipeConsumerConfig.getProperties());
+
         try (consumer) {
             consumer.subscribe(List.of(KafkaTopic.STREAMS_PIPE_OUTPUT));
 
