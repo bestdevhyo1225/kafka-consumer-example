@@ -3,6 +3,8 @@ package com.example.kafka.pipe;
 import com.example.kafka.KafkaTopic;
 import java.time.Duration;
 import java.util.List;
+
+import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -31,6 +33,12 @@ public class KafkaStreamsPipeConsumer2 {
                         "Topic: {}, Partition: {}, Offset: {}, Key: {}, Value: {}",
                         record.topic(), record.partition(), record.offset(), record.key(), record.value()
                     );
+                }
+
+                try {
+                    consumer.commitAsync();
+                } catch (CommitFailedException exception) {
+                    logger.error("exception", exception);
                 }
             }
         }
