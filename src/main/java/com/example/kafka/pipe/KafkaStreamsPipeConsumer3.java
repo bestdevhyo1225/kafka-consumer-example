@@ -34,12 +34,6 @@ public class KafkaStreamsPipeConsumer3 {
                         record.topic(), record.partition(), record.offset(), record.key(), record.value()
                     );
                 }
-
-                try {
-                    consumer.commitAsync();
-                } catch (CommitFailedException exception) {
-                    logger.error("exception", exception);
-                }
             }
         }
     }
