@@ -1,6 +1,7 @@
 package com.example.kafka.linesplit;
 
 import com.example.kafka.KafkaTopic;
+import com.example.kafka.async.OffsetCommitAsyncCallback;
 import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -38,7 +39,7 @@ public class KafkaStreamsLineSplitConsumer2 {
                 }
 
                 try {
-                    consumer.commitAsync(new LineSplitOffsetCommitCallback());
+                    consumer.commitAsync(new OffsetCommitAsyncCallback());
                 } catch (CommitFailedException exception) {
                     logger.error("exception", exception);
                 }

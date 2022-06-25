@@ -1,15 +1,16 @@
 package com.example.kafka.linesplit;
 
 import com.example.kafka.KafkaTopic;
-import java.time.Duration;
-import java.util.List;
-
+import com.example.kafka.async.OffsetCommitAsyncCallback;
 import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.Duration;
+import java.util.List;
 
 public class KafkaStreamsLineSplitConsumer {
 
@@ -38,7 +39,7 @@ public class KafkaStreamsLineSplitConsumer {
                 }
 
                 try {
-                    consumer.commitAsync(new LineSplitOffsetCommitCallback());
+                    consumer.commitAsync(new OffsetCommitAsyncCallback());
                 } catch (CommitFailedException exception) {
                     logger.error("exception", exception);
                 }
