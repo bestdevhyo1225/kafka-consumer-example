@@ -31,6 +31,22 @@ public class KafkaBookConsumer {
         // latest 값을 적용해 토픽의 가장 마지막부터 메시지를 가져온다.
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, ConsumerConfigValue.AUTO_OFFSET_RESET_LATEST);
 
+        // 브로커가 컨슈머가 살아있는 것으로 판단하기 위한 시간
+        // 해당 시간내에 하트비트를 보내지 않으면, 해당 컨슈머는 종료되거나 장애가 발생한 것으로 판단하고 컨슈머 그룹은 '리밸런스' 를 한다.
+        // 일반적으로 heartbeat.interval.ms 값이 함께 수정된다.
+        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, ConsumerConfigValue.SESSION_TIMEOUT);
+
+        // Heartbeat 전송 시간 간격이다. HeartBeat 스레드는 heartbeat.interval.ms 간격으로 하트비트를 전송한다.
+        // session.timeout.ms 값보다 낮아야 하며, 일반적으로 '3분의 1' 정도로 설정한다.
+        props.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, ConsumerConfigValue.HEARTBEAT_INTERVAL);
+
+        // poll() 호출에 대한 최대 레코드 수 조정
+        props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, ConsumerConfigValue.MAX_POLL_INTERVAL);
+
+        // 주기적으로 poll() 을 호출하지 않으면 장애라고 판단하고 컨슈머 그룹에서 제외한 후, 컨슈머 그룹은 '리밸런스' 를 한다.
+        // 컨슈머가 무한정 해당 파티션을 점유할 수 없도록 하기 위함이다.
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, ConsumerConfigValue.MAX_POLL_RECORDS);
+
         // 메시지의 키와 값에 문자열을 사용했기 때문에 내장된 StringDeserializer 클래스를 지정한다.
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
