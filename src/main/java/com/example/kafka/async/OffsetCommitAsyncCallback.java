@@ -1,4 +1,4 @@
-package com.example.kafka.linesplit;
+package com.example.kafka.async;
 
 import org.apache.kafka.clients.consumer.OffsetAndMetadata;
 import org.apache.kafka.clients.consumer.OffsetCommitCallback;
@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-public class LineSplitOffsetCommitCallback implements OffsetCommitCallback {
+public class OffsetCommitAsyncCallback implements OffsetCommitCallback {
 
-    private static final Logger logger = LoggerFactory.getLogger(LineSplitOffsetCommitCallback.class);
+    private static final Logger logger = LoggerFactory.getLogger(OffsetCommitAsyncCallback.class);
 
     @Override
     public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
