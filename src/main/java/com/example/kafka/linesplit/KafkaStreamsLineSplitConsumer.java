@@ -36,6 +36,12 @@ public class KafkaStreamsLineSplitConsumer {
                         record.topic(), record.partition(), record.offset(), record.key(), record.value()
                     );
                 }
+
+                try {
+                    consumer.commitAsync(new LineSplitOffsetCommitCallback());
+                } catch (CommitFailedException exception) {
+                    logger.error("exception", exception);
+                }
             }
         }
     }
