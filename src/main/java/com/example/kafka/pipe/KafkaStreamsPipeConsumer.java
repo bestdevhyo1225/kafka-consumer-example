@@ -23,7 +23,7 @@ public class KafkaStreamsPipeConsumer {
             consumer.subscribe(List.of(KafkaTopic.STREAMS_PIPE_OUTPUT));
 
             while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1_000));
 
                 logger.info("records count: {}", records.count());
 
