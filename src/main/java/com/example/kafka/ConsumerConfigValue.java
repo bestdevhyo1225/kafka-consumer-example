@@ -7,6 +7,7 @@ public abstract class ConsumerConfigValue {
     public static final String ACK_ALL = "all"; // -1 값과 동일하다.
     public static final String COMPRESSION_TYPE_GZIP = "gzip";
     public static final String ENABLE_AUTO_COMMIT_TRUE = "true";
+    public static final int AUTO_COMMIT_INTERVAL_MS = 3_000;
     public static final String ENABLE_AUTO_COMMIT_FALSE = "false";
     public static final String AUTO_OFFSET_RESET_EARLIEST = "earliest";
     public static final String AUTO_OFFSET_RESET_LATEST = "latest";
